@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  schedulerName: stork
+  containers:
+  - name: nginx
+    image: nginx:stable
+    volumeMounts:
+    - name: linstor-volume-pvc
+      mountPath: /data
+    ports:
+    - containerPort: 80
+  volumes:
+  - name: linstor-volume-pvc
+    persistentVolumeClaim:
+      claimName: "linstor-volume-pvc"
