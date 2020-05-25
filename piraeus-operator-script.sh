@@ -27,6 +27,20 @@ kubectl apply -f linstor-pvc.yaml
 kubectl get persistentvolumes
 kubectl exec piraeus-op-cs-controller-0 -- linstor volume list
 
+# demo: mysql running on linstor storage
+cat mysql.yaml
 kubectl apply -f mysql.yaml
+kubectl get pods
 
-### TODO mysql usage demo
+kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword
+# in mysql, show that is working, something like
+# SELECT VERSION();
+
+cat employees.sql | kubectl run -i --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword -t
+# takes about 10 seconds...
+
+kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword
+
+# USE employees;
+# SELECT * FROM employees LIMIT 40;
+# SELECT COUNT(*) FROM employees;
