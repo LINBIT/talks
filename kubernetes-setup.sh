@@ -17,3 +17,5 @@ virter vm exec --set "steps[0].shell.script=yum install -y kernel-devel" centos-
 
 # add thin lvm support
 virter vm exec --set "steps[0].shell.script=modprobe dm_thin_pool" centos-7-k8s-10{1..4}
+
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.122.100:/etc/kubernetes/admin.conf ~/.kube/config
