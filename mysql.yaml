@@ -40,4 +40,4 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: linstor-mysql-pvc
+          claimName: linstor-volume-pvc
