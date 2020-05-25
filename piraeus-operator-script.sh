@@ -27,4 +27,6 @@ kubectl apply -f linstor-pvc.yaml
 kubectl get persistentvolumes
 kubectl exec piraeus-op-cs-controller-0 -- linstor volume list
 
-### TODO mysql demo
+kubectl apply -f mysql.yaml
+
+### TODO mysql usage demo

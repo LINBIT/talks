@@ -7,7 +7,7 @@ spec:
   storageClassName: linstor-volume-r2
   accessModes:
     - ReadWriteOnce
-  volumeMode: Block
+  volumeMode: Filesystem
   resources:
     requests:
       storage: 1Gi
