@@ -6,8 +6,5 @@ provisioner: linstor.csi.linbit.com
 allowVolumeExpansion: true
 reclaimPolicy: Delete
 parameters:
-  placementCount: "2"
-  placementPolicy: AutoPlace
-  allowRemoteVolumeAccess: "true"
-  disklessOnRemaining: "false"
+  autoPlace: "2"
   storagePool: lvm-thin
