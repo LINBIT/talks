@@ -4,7 +4,7 @@
 
 set -e
 
-parallel virter vm run --id 10{1} --name centos-7-k8s-10{1} -m {2}G --vcpus 4 --wait-ssh centos-7-k8s-1-18 ::: {0..4} :::+ 3 3 3 4 4
+parallel --tag -j0 --line-buffer virter vm run --id 10{1} --name centos-7-k8s-10{1} -m {2}G --vcpus 4 --wait-ssh centos-7-k8s-1-18 ::: {0..4} :::+ 3 3 3 4 4
 
 # run in linstor-kubernetes-tests
 virter vm exec -p provision-install-1-18-weave.toml centos-7-k8s-10{0..4}
