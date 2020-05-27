@@ -108,13 +108,16 @@ spec:
         # automatically update schedulerName
         #- --app-initializer=true
         imagePullPolicy: Always
-        image: linbit/stork:latest
+        image: linbit/stork
         resources:
           requests:
             cpu: '0.1'
         securityContext:
           privileged: false
         name: stork
+        env:
+        - name: LS_ENDPOINT
+          value: http://piraeus-op-cs.default:3370
       hostPID: false
       affinity:
         podAntiAffinity:

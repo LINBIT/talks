@@ -2,19 +2,19 @@
 
 # show that mysql is running in a suboptimal location:
 kubectl get pods -o wide
-kubectl exec -it linstor-op-cs-controller-0 -- linstor volume list
+kubectl exec -it piraeus-op-cs-controller-0 -- linstor volume list
 
 # first, undo what we did before
 kubectl delete -f mysql.yaml
 
 # deploy stork + scheduler
-less stork-deployment.yaml
 kubectl apply -f stork-deployment.yaml
-kubectl get pods -A
+less stork-deployment.yaml
+watch kubectl get pods -A
 
-less stork-scheduler.yaml
 kubectl apply -f stork-scheduler.yaml
-kubectl get pods -A
+less stork-scheduler.yaml
+watch kubectl get pods -A
 
 vim mysql.yaml
 # diff --git a/mysql.yaml b/mysql.yaml
@@ -30,5 +30,8 @@ vim mysql.yaml
 #        - image: mysql:8.0
 #          name: mysql
 
+kubectl exec -it piraeus-op-cs-controller-0 -- linstor volume list
+
+kubectl apply -f linstor-pvc.yaml
 kubectl apply -f mysql.yaml
-kubectl get pods -o wide
+watch kubectl get pods -o wide
