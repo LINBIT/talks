@@ -32,6 +32,5 @@ vim mysql.yaml
 
 kubectl exec -it piraeus-op-cs-controller-0 -- linstor volume list
 
-kubectl apply -f linstor-pvc.yaml
 kubectl apply -f mysql.yaml
 watch kubectl get pods -o wide
